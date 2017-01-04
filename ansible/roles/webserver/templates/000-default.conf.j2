@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    DocumentRoot /opt/proj/frontend/web
+    <Directory /opt/proj/frontend/web>
+        Require all granted
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+        Options FollowSymlinks
+    </Directory>
+
+    ErrorLog /var/log/apache2/proj_error.log
+    CustomLog /var/log/apache2/proj_access.log combined
+</VirtualHost>

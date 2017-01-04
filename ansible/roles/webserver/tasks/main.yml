@@ -1,0 +1,8 @@
+---
+- include: php.yml
+- include: apache.yml
+- include: mysql.yml
+- include: app.yml
+- include: dev.yml
+- include: memcached.yml
+  when: dev

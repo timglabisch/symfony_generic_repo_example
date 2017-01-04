@@ -1,0 +1,2 @@
+[dev]
+proj.local ansible_connection=local

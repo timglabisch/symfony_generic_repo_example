@@ -1,0 +1,1 @@
+# Minimal Vagrant Box (Symfony)
