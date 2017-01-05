@@ -6,14 +6,14 @@ Das Entity besitzt mehr oder weniger nur einen "Title" als Attribut, zur Veransc
 ### Ordnerstruktur
 
 - ApiBundle -> Beinhaltet die Controller, welche für die API benötigt werden.
-- Document -> Beinhaltet Domänenspezifische Klassen / Interfaces
+- Document -> Beinhaltet domänenspezifische Klassen / Interfaces
 - Document*Bundle -> Beinhaltet verschiedene Repository Implementationen.
 
 Die Grundidee ist, dass sich die eigentlichen Implementationen des Repositories/Services einfach tauschen, löschen und mit Decoratoren erweitern lassen.
 
 Beispiel:
 
-legt man über einen POST Request ein neues Dokument an:
+Legt man über einen POST Request ein neues Dokument an:
 
 ```
 POST http://192.168.10.22/app_dev.php
@@ -153,14 +153,13 @@ danach sollte `http://192.168.10.22/app_dev.php/` aufrufbar sein.
 ## Weiteres
 
 ### Trennung von Read / Write Implementation
-Bringt einige Vorteile von CQRS, setzt jedoch bewusst keinen Event-Bus ein, um ein
+Bringt einige Vorteile von CQRS, setzt jedoch bewusst keinen EventBus ein, um ein
 noch klareres Interface für Write Operationen zu haben und die Abhängigkeit zu einem sehr
 generischen EventBus zu verhindern.
 
 ### Context
-Das Kontextobjekt ist nicht sauber implementiert, die Grundidee hierbei ist es,
-Implementationen zu ermöglichen die Stateless agieren können und auf Funktionalität
-verzichten können, welche z. B. erfordert den aktuellen User, Tokens o. etc. aus dem Request zu extrahieren.
+Das Kontextobjekt ist nicht sauber/vollständig implementiert. Die Grundidee hierbei ist es,
+Implementationen zu ermöglichen, die Stateless agieren können.
 Die Implemenation ist nicht vollständig, der Ansatz ist nicht Teil des Projektes.
 
 ### Kapselung zu Symfony
