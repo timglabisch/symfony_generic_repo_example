@@ -1,15 +1,15 @@
-### Beispielanwendung für ein halbwegs flexible Repositories
+### Beispielanwendung für  halbwegs flexible Repositories
 
-Das Repository beinhaltet eine kleine JSON-ÜBER-HTTP-API welche ein CRUD Interface für das Entity "Document" bietet.
+Das Projekt beinhaltet eine kleine JSON-ÜBER-HTTP-API welche ein CRUD Interface für das Entity "Document" bietet.
 Ds Entity besitzt mehr oder weniger nur einen Title als Attribut, zur Veranschaulichtung der gewählten Strategie ist dies aber vermutlich ausreichend.
 
-## Ordnerstruktur
+### Ordnerstruktur
 
 - ApiBundle -> Beinhaltet die Controller welche für die API benötigt werden.
 - Document -> Beinhaltet Domänenspezifische Klassen / Interfaces
 - Document*Bundle -> Beinhaltet verschiedene Repository Implementationen.
 
-Die Grundidee ist, dass sich die eigentlichen Implementationen einfach tauschen und decorieren lassen.
+Die Grundidee ist, dass sich die eigentlichen Implementationen einfach tauschen und dekorieren lassen.
 
 Beispiel:
 
@@ -30,7 +30,7 @@ So bekommt man das passende Dokument zurückgeliefert:
 Schaut man sich das Resultat genau an, stellt man fest, dass der "type" mit angegeben ist.
 
 Es wird abwechselnd zwischen Doctrine und Eloquent gewählt gewechselt, das spannende Dabei ist, dass weder die
-RoundRobin, noch die Doctrine oder Elowuent Lösung voneinander wissen, diese jedoch alle zusammen arbeiten.
+RoundRobin, noch die Doctrine oder Eloquent Lösung voneinander wissen, diese jedoch alle zusammen arbeiten.
 
 Dies könnte man beliebig erweitern, beispielsweise könnte man eine Imlementation schaffen, welche nur loggt, als Chaos Monkey fungiert, als zusätzlicher Security Layer,
 statistiken einsammelt, unterschiedlichste caches implementiert o. etc.
@@ -46,6 +46,7 @@ Vorteile:
 Nachteile:
 - Abhängigkeiten zu einem Domänen Paket werden aufgebaut (src/Foo/Document).
 - Erfordert gründliche Arbeit, Tools wie Deptrac helfen hier jedoch.
+- Ein wenig mehr Code
 
 ## Ausporbieren?
 
