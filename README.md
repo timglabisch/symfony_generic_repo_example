@@ -1,11 +1,11 @@
 ### Beispielanwendung für  halbwegs flexible Repositories
 
-Das Projekt beinhaltet eine kleine JSON-ÜBER-HTTP API welche ein CRUD Interface für das Entity "Document" bietet.
-Ds Entity besitzt mehr oder weniger nur einen Title als Attribut, zur Veranschaulichtung der gewählten Strategie ist dies aber vermutlich ausreichend.
+Das Projekt beinhaltet eine kleine JSON-ÜBER-HTTP API, welche ein CRUD Interface für das Entity "Document" bietet.
+Das Entity besitzt mehr oder weniger nur einen "Title" als Attribut, zur Veranschaulichtung der gewählten Strategie ist dies aber vermutlich ausreichend.
 
 ### Ordnerstruktur
 
-- ApiBundle -> Beinhaltet die Controller welche für die API benötigt werden.
+- ApiBundle -> Beinhaltet die Controller, welche für die API benötigt werden.
 - Document -> Beinhaltet Domänenspezifische Klassen / Interfaces
 - Document*Bundle -> Beinhaltet verschiedene Repository Implementationen.
 
@@ -20,7 +20,7 @@ POST http://192.168.10.22/app_dev.php
 {"title": "test123"}
 ```
 
-So bekommt man das passende Dokument zurückgeliefert:
+so bekommt man das passende Dokument zurückgeliefert:
 
 ```
 {"document":{"id":"1e07859f-d2e5-11e6-9e68-0800274f7b35","title":"test123","created":"05.01.2017","type":"Foo\\DocumentMysqlDoctrineBundle\\Entity\\MysqlDoctrineDocument"}}
@@ -28,9 +28,9 @@ So bekommt man das passende Dokument zurückgeliefert:
 
 Schaut man sich das Resultat genau an, stellt man fest, dass der "type" mit angegeben ist.
 
-Es wird abwechselnd zwischen Doctrine und Eloquent gewählt gewechselt.
-Hin und wieder wird ein Doctrine Entity zurück geliefert, hin und wieder ein Eloquent Model.
-Das spannende Dabei ist, dass weder die RoundRobin-, noch die Doctrine- oder Eloquentimplementation voneinander wissen, diese jedoch alle zusammen arbeiten.
+Es wird abwechselnd zwischen Doctrine und Eloquent gewählt.
+Hin und wieder wird ein Doctrine Entity zurückgeliefert, hin und wieder ein Eloquent Model.
+Das spannende dabei ist, dass weder die RoundRobin-, noch die Doctrine- oder Eloquentimplementation voneinander wissen, diese jedoch alle zusammen arbeiten.
 
 Dies könnte man beliebig erweitern, beispielsweise wären auch folgende Implementation denkbar:
 
@@ -38,7 +38,7 @@ Dies könnte man beliebig erweitern, beispielsweise wären auch folgende Impleme
     - Logging von Lese / Schreibzugriffe
     - Implementation eines Security Layers
     - Implementationen des Strategy-Pattern
-    - Decoratoren welche Proxys oder Decoratoren von "Document"-Entities zurückliefern
+    - Decoratoren, welche Proxys oder Decoratoren von "Document"-Entities zurückliefern
     - Implementationen für z.b. die Symfony Toolbar, einem Profiler oder ähnlichem
 - Implemantionen
     - für jegliche Datenbanksenken
@@ -46,7 +46,7 @@ Dies könnte man beliebig erweitern, beispielsweise wären auch folgende Impleme
 
 Vorteile:
 
-- Die Unterschiedlichen Implementationen haben keine Abhängigkeit zueinander.
+- Die unterschiedlichen Implementationen haben keine Abhängigkeit zueinander.
 - Es ist sehr einfach möglich andere Implementationen zu schaffen.
 - Es ist sehr einfach möglich Implementationen zu löschen.
 - Es ist recht simpel mehrere Implementationen gleichzeitig zu verwenden, z.b. ein Adapter für ein Legacy System, Feature Flags, ...
@@ -59,9 +59,9 @@ Nachteile:
 
 - Abhängigkeiten zu einem Domänen Paket werden aufgebaut (src/Foo/Document).
 - Erfordert gründliche Arbeit, Tools wie Deptrac helfen hier jedoch.
-- Etwas mehr Code und einige Interfaces
-- Man muss auch Breaking Changes achten (Änderungen der Interfaces in src/Document)
-    - Lösbar durch hohe Testabdeckung
+- Etwas mehr Code und einige Interfaces.
+- Man muss auf Breaking Changes achten (Änderungen der Interfaces in src/Document).
+    - lösbar durch hohe Testabdeckung
 
 ## Ausporbieren?
 
@@ -153,15 +153,15 @@ danach sollte `http://192.168.10.22/app_dev.php/` aufrufbar sein.
 ## Weiteres
 
 ### Trennung von Read / Write Implementation
-Bringt einige Vorteile von CQRS, setzt jedoch bewusst keinen Event-Bus ein um ein
-noch klareres Interface für Write Operationen zu haben, und die Abhängigkeit zu einem sehr
+Bringt einige Vorteile von CQRS, setzt jedoch bewusst keinen Event-Bus ein, um ein
+noch klareres Interface für Write Operationen zu haben und die Abhängigkeit zu einem sehr
 generischen EventBus zu verhindern.
 
 ### Context
-Das Kontextobjekt ist nicht sauber implementiert, die Grundidee hierbei ist,
+Das Kontextobjekt ist nicht sauber implementiert, die Grundidee hierbei ist es,
 Implementationen zu ermöglichen die Stateless agieren können und auf Funktionalität
 verzichten können, welche z. B. erfordert den aktuellen User, Tokens o. etc. aus dem Request zu extrahieren.
-Die Implemenation ist nicht vollständig, der Ansatz ist nicht Teil des Projektes
+Die Implemenation ist nicht vollständig, der Ansatz ist nicht Teil des Projektes.
 
 ### Kapselung zu Symfony
 Der Controller ist mehr oder weniger unabhängig von Symfony.
