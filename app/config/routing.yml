@@ -1,0 +1,2 @@
+foo_api:
+    resource: "@FooApiBundle/Controller"

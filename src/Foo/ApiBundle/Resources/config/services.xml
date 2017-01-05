@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="api_controller_document" class="Foo\ApiBundle\Controller\DocumentController">
+            <argument type="service" id="document_reader_service"/>
+            <argument type="service" id="document_writer_service"/>
+        </service>
+
+
+        <!--
+        <service id="document_reader_service" alias="document_mysql_doctrine_reader_service"/>
+        <service id="document_writer_service" alias="document_mysql_doctrine_writer_service"/>
+        -->
+
+        <!--
+        <service id="document_reader_service" alias="document_mysql_eloquent_reader_service"/>
+        <service id="document_writer_service" alias="document_mysql_eloquent_writer_service"/>
+        -->
+
+        <service id="document_reader_service" alias="document_roundrobin_reader_service"/>
+        <service id="document_writer_service" alias="document_roundrobin_writer_service"/>
+
+        <service id="document_roundrobin_reader_service" class="Foo\DocumentRoundRobinBundle\Service\DocumentRoundRobinService">
+            <argument type="collection">
+                <argument type="service" id="document_mysql_doctrine_reader_service"/>
+                <argument type="service" id="document_mysql_eloquent_reader_service"/>
+            </argument>
+        </service>
+
+        <service id="document_roundrobin_writer_service" class="Foo\DocumentRoundRobinBundle\Service\DocumentRoundRobinService">
+            <argument type="collection">
+                <argument type="service" id="document_mysql_doctrine_writer_service"/>
+                <argument type="service" id="document_mysql_eloquent_writer_service"/>
+            </argument>
+        </service>
+
+        <service id="param_converter_document_create_new_document" class="Foo\ApiBundle\ParamConverter\Document\ParamConverterDocumentCreateNewDocument">
+            <tag name="request.param_converter"/>
+        </service>
+
+        <service id="param_converter_document_update_document" class="Foo\ApiBundle\ParamConverter\Document\ParamConverterDocumentUpdateDocument">
+            <tag name="request.param_converter"/>
+        </service>
+
+        <service id="param_converter_context" class="Foo\ApiBundle\ParamConverter\ParamConverterContext">
+            <tag name="request.param_converter"/>
+        </service>
+
+    </services>
+
+</container>
